@@ -20,6 +20,9 @@
     - https
   notify: restart firewalld
 
+- name: Setsebool
+  command: setsebool -P httpd_can_network_connect 1
+
 - name: Start nginx service
   systemd:
     state: restarted
