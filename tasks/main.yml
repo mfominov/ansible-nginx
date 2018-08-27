@@ -23,6 +23,11 @@
 - name: Setsebool
   command: setsebool -P httpd_can_network_connect 1
 
+- name: Create proxy_params file
+  file:
+    path: /etc/nginx/proxy_params
+    state: touch
+
 - name: Start nginx service
   systemd:
     state: restarted
