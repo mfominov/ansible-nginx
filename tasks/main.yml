@@ -12,7 +12,8 @@
 
 - name: Edit firawalld rules
   firewalld:
-    service: "{{ item }}"
+    # service: "{{ item }}"
+    port: "{{ http_port }}/tcp"
     permanent: true
     state: enabled
   with_items:
