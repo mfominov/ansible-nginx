@@ -23,6 +23,12 @@
 - name: Setsebool
   command: setsebool -P httpd_can_network_connect 1
 
+- name: Copy nginx.conf
+  template:
+    src: nginx.j2
+    dest: /etc/nginx/nginx.conf
+  notify: restart nginx
+
 - name: Create proxy_params file
   file:
     path: /etc/nginx/proxy_params
