@@ -10,6 +10,18 @@
     name: nginx
     state: present
 
+- name: Install semanage
+  yum:
+    name: policycoreutils-python
+    state: present
+
+- name: Allow Nginx to listen on tcp port {{ http_port }}
+  seport:
+    ports: "{{ http_port }}"
+    proto: tcp
+    setype: http_port_t
+    state: present
+
 - name: Edit firawalld rules
   firewalld:
     # service: "{{ item }}"
